@@ -17,7 +17,7 @@ jobs:
       - name: Update Helm Charts Dependency
         uses: mapcolonies/javascript-github-actions/actions/update-chart-dependency@update-chart-dependency
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT }}
           target-repo: 'shimoncohen/helm-charts'
           branch: 'test-dependency-update-action'
           chart-name: 'testing'
