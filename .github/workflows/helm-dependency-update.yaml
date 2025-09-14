@@ -1,0 +1,24 @@
+name: Helm Dependency Update
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update Helm Charts Dependency
+        uses: mapcolonies/javascript-github-actions/actions/update-chart-dependency@update-chart-dependency
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          target-repo: 'mapcolonies/helm-charts-test'
+          branch: 'test-dependency-update-action'
+          chart-name: 'testing'
+          version: '${{ github.ref_name }}'
