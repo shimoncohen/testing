@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Trim v prefix from ref_name
+        id: trim_version
+        run: |
+            TAG=${{ github.ref_name }}
+            echo "VERSION=${TAG#v}" >> $GITHUB_OUTPUT
       - name: Update Helm Charts Dependency
         uses: mapcolonies/javascript-github-actions/actions/update-chart-dependency@update-chart-dependency
         with:
@@ -21,4 +26,4 @@ jobs:
           target-repo: 'shimoncohen/helm-charts'
           branch: 'test-dependency-update-action'
           chart-name: 'testing'
-          version: '${{ github.ref_name }}'
+          version: '${{ steps.trim_version.outputs.VERSION }}'
