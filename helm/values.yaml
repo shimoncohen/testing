@@ -13,6 +13,7 @@ resetOnConfigChange: false
 
 nameOverride: ""
 fullnameOverride: ""
+irrelevantValue: ""
 
 livenessProbe:
   enabled: true
